@@ -1,0 +1,12 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: cow-say-job-backofflimit
+spec:
+  template:
+    spec:
+      containers:
+      - name: cow-say
+        image: rancher/cowsay:latest
+      restartPolicy: Never
+  backoffLimit: 2

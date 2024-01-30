@@ -1,0 +1,13 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: cow-say-job-activedeadlineseconds
+spec:
+  template:
+    spec:
+      containers:
+      - name: cow-say
+        image: rancher/cowsay:latest
+      restartPolicy: Never
+  completions: 5
+  parallelism: 2
