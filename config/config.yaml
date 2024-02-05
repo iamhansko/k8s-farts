@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Config
+current-context: k8s-admin@k8s-playground
+clusters:
+- name: k8s-playground
+  cluster:
+    certificate-authority: ca.crt
+    # certificate-authority-data:
+    server: https://k8s-playground:6443
+contexts:
+- name: k8s-admin@k8s-playground
+  context:
+    cluster: k8s-playground
+    user: k8s-admin
+    namespace: default
+users:
+- name: k8s-admin
+  user:
+    client-certificate: admin.crt
+    cleint-key: admin.key
