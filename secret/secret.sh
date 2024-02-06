@@ -26,3 +26,15 @@ vi /etc/kubernetes/manifests/kube-apiserver.yaml
 kubectl create secret generic mysecret2 --from-literal=key2=secret
 # encrypt existing secrets
 kubectl get secrets -A -o json | kubectl replace -f - 
+
+# Docker Registry Credentials
+# encrypt docker config.json
+cat ~/.docker/config.json | base64
+kubectl create secret docker-registry regcred \
+--docker-server=private-registry.io \
+--docker-username=registry-user \
+--docker-password=registry-password \
+--docker-email=registry-user@org.com
+kubectl create secret generic regcred \
+--from-file=.dockerconfigjson=PATH_TO_.DOCKER_CONFIG.JSON \
+--type=kubernetes.io/dockerconfigjson
